@@ -1,0 +1,160 @@
+/* src/index.css */
+
+/* 1. Import Tailwind's base, components, and utilities.
+   This MUST come first to allow Tailwind to establish its defaults. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2. (Optional) Define CSS Variables for shadcn/ui theming if you haven't
+      already or if shadcn init didn't fully set them up for your base color.
+      `shadcn/ui init` usually handles this by adding variables to the :root
+      selector for both light and dark modes.
+      If it did, you'll see a block of `--background`, `--foreground`,
+      `--primary`, etc., variables here or in a layer.
+      If not, or if you want to ensure they are set, you can define them.
+      The `shadcn/ui init` process is supposed to do this based on your
+      color choices. If you see these variables already present after
+      running `shadcn/ui init`, you might not need to add them manually.
+
+      Example of what shadcn/ui *might* add (actual values depend on your choices):
+*/
+@layer base { /* shadcn/ui often puts its theme variables in the 'base' layer */
+  :root {
+    --background: 0 0% 100%; /* Example for light mode white */
+    --foreground: 0 0% 3.9%; /* Example for light mode dark text */
+
+    /* ... other color variables like --card, --popover, --primary, etc. ... */
+    
+    --radius: 0.5rem; /* Example border radius variable */ --card: 0 0% 100%; --card-foreground: 0 0% 3.9%; --popover: 0 0% 100%; --popover-foreground: 0 0% 3.9%; --primary: 0 0% 9%; --primary-foreground: 0 0% 98%; --secondary: 0 0% 96.1%; --secondary-foreground: 0 0% 9%; --muted: 0 0% 96.1%; --muted-foreground: 0 0% 45.1%; --accent: 0 0% 96.1%; --accent-foreground: 0 0% 9%; --destructive: 0 84.2% 60.2%; --destructive-foreground: 0 0% 98%; --border: 0 0% 89.8%; --input: 0 0% 89.8%; --ring: 0 0% 3.9%; --chart-1: 12 76% 61%; --chart-2: 173 58% 39%; --chart-3: 197 37% 24%; --chart-4: 43 74% 66%; --chart-5: 27 87% 67%;
+  }
+
+  .dark { /* Variables for dark mode */
+    --background: 0 0% 3.9%; /* Example for dark mode dark background */
+    --foreground: 0 0% 98%;   /* Example for dark mode light text */
+
+    /* ... other color variables for dark mode ... */
+
+    --card: 0 0% 3.9%;
+
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+
+    --input: 0 0% 14.9%;
+
+    --ring: 0 0% 83.1%;
+
+    --chart-1: 220 70% 50%;
+
+    --chart-2: 160 60% 45%;
+
+    --chart-3: 30 80% 55%;
+
+    --chart-4: 280 65% 60%;
+
+    --chart-5: 340 75% 55%;
+  }
+}
+
+/* 3. Global body styles (Tailwind's preflight handles most resets).
+   You can add specific overrides or base body styles here if needed.
+   shadcn/ui components are designed to work well with Tailwind's defaults.
+   The original `body` styles you had for centering are better handled
+   at the component level in React using Flexbox/Grid utilities from Tailwind.
+*/
+body {
+  /* Tailwind's preflight already sets a good font-family stack.
+     If you have a very specific custom font you want as the absolute base,
+     you can define it in your tailwind.config.js theme.fontFamily.sans
+     and Tailwind will apply it.
+
+     Example: If you wanted to ensure a specific system-ui stack and
+     antialiasing, though Tailwind's defaults are usually good:
+  */
+  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
+
+  /* min-height: 100vh; is good to ensure the body takes at least full viewport height */
+  min-height: 100vh;
+
+  /*
+    The original:
+    display: flex;
+    place-items: center;
+    This was for centering the initial Vite boilerplate content.
+    In a real app, you'll control layout within your React components.
+    So, these can usually be removed from the global body style.
+  */
+
+  /*
+    background-color and color will be handled by shadcn/ui theme variables
+    and Tailwind utility classes (e.g., bg-background, text-foreground).
+  */
+}
+
+
+/*
+  What to remove or let Tailwind/shadcn handle from your original CSS:
+
+  - :root { font-family, line-height, font-weight, color-scheme, color, background-color, font-synthesis, text-rendering, -webkit-font-smoothing, -moz-osx-font-smoothing }
+    => Tailwind's preflight and shadcn/ui's theme variables manage these.
+       `color-scheme: light dark;` is useful for browser UI elements but Tailwind/shadcn handles app colors.
+
+  - a { font-weight, color, text-decoration }
+  - a:hover { color }
+    => Style links using Tailwind utility classes (e.g., `text-primary hover:text-primary/90 font-medium`).
+
+  - h1 { font-size, line-height }
+    => Style headings with Tailwind utility classes (e.g., `text-3xl font-bold leading-tight`).
+
+  - button { border-radius, border, padding, font-size, font-weight, font-family, background-color, cursor, transition }
+  - button:hover { border-color }
+  - button:focus, button:focus-visible { outline }
+    => The `Button` component from `shadcn/ui` will come with its own extensive styling.
+       If you use native <button> elements elsewhere, style them with Tailwind utilities.
+
+  - @media (prefers-color-scheme: light) { ... }
+    => Dark mode is handled by Tailwind's `dark:` variant, which typically relies on a
+       class (e.g., `<html class="dark">`) toggled by JavaScript, or can be set to
+       `media` in `tailwind.config.js` if you prefer OS-level preference.
+       `shadcn/ui` theming is built to work with Tailwind's dark mode.
+*/
+
+
+
+
+
+@layer base {
+  * {
+    @apply border-border;
+ }
+  body {
+    @apply bg-background text-foreground;
+ }
+}

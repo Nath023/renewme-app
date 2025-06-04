@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    // "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo", // This is usually for tsconfig.build.json, not the main one. Can be removed or kept if your setup specifically uses it here.
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler", // "bundler" is good for Vite
+    "allowImportingTsExtensions": true,
+    // "verbatimModuleSyntax": true, // Let's comment this out for now, as it can be strict with aliases
+    "resolveJsonModule": true,      // Often useful, shadcn might like it
+    "isolatedModules": true,        // Good practice with bundlers like Vite
+    // "moduleDetection": "force",  // Usually not needed to be set explicitly
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    // "erasableSyntaxOnly": true, // Let's comment this out for now
+    "noFallthroughCasesInSwitch": true,
+    // "noUncheckedSideEffectImports": true, // Can also be strict, let's comment for now
+
+    /* Path Aliases - ADDED/MODIFIED */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src", ".vite/env.d.ts"], // Added .vite/env.d.ts for Vite's env types
+  "references": [{ "path": "./tsconfig.node.json" }] // Ensure you have this line if you have tsconfig.node.json
+}
